@@ -1,0 +1,25 @@
+<svg width="200" height="56" viewBox="0 0 200 56" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Enactus ENSI">
+  <title>Enactus ENSI</title>
+  <!-- Placeholder wordmark (light variant for dark backgrounds): replace with the real logo asset -->
+  <defs>
+    <style>
+      @font-face {
+        font-family: "Bon Vivant";
+        src: url("/fonts/BonVivant-Regular.woff2") format("woff2");
+        font-weight: 400;
+        font-style: normal;
+      }
+      @font-face {
+        font-family: "Bon Vivant";
+        src: url("/fonts/BonVivant-Bold.woff2") format("woff2");
+        font-weight: 700;
+        font-style: normal;
+      }
+    </style>
+  </defs>
+  <g>
+    <polygon points="22,7 38,46 6,46" fill="#FFC220" />
+    <text x="48" y="27" font-family="'Bon Vivant', 'Fredoka', 'Segoe UI', sans-serif" font-weight="700" font-size="22" letter-spacing="0.5" fill="#FFFFFF">ENACTUS</text>
+    <text x="48" y="45" font-family="'Bon Vivant', 'Fredoka', 'Segoe UI', sans-serif" font-weight="600" font-size="13" letter-spacing="3" fill="#B0B3B8">ENSI</text>
+  </g>
+</svg>

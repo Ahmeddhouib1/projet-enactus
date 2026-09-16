@@ -1,0 +1,6 @@
+<svg width="800" height="500" viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Event cover placeholder">
+  <rect width="800" height="500" fill="#515456"/>
+  <polygon points="0,0 260,0 60,500 0,500" fill="#5c6062"/>
+  <polygon points="320,0 480,0 280,500 120,500" fill="#68696b"/>
+  <polygon points="600,0 800,0 800,180 700,500 540,500" fill="#FFC220" opacity="0.85"/>
+</svg>

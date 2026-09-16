@@ -1,0 +1,97 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+ * Real "Bon Vivant" (primary) and "Glacial Indifference" (secondary)
+ * heading font files are not distributed with this repo (licensing).
+ * Drop the real files into /public/fonts using these exact names and
+ * they take over automatically - no code changes needed. Until then
+ * these @font-face rules simply fail to load and the stack below falls
+ * through to the Poppins fallback loaded in lib/fonts.ts.
+ */
+@font-face {
+  font-family: "Bon Vivant";
+  src:
+    url("/fonts/BonVivant-Regular.woff2") format("woff2"),
+    url("/fonts/BonVivant-Regular.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Bon Vivant";
+  src:
+    url("/fonts/BonVivant-Bold.woff2") format("woff2"),
+    url("/fonts/BonVivant-Bold.otf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Glacial Indifference";
+  src:
+    url("/fonts/GlacialIndifference-Regular.woff2") format("woff2"),
+    url("/fonts/GlacialIndifference-Regular.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Glacial Indifference";
+  src:
+    url("/fonts/GlacialIndifference-Bold.woff2") format("woff2"),
+    url("/fonts/GlacialIndifference-Bold.otf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --enactus-yellow: #ffc220;
+  --enactus-dark-gray: #515456;
+  --enactus-navy: #132240;
+  --enactus-light-gray: #b0b3b8;
+  --enactus-white: #ffffff;
+
+  /* Structural headings (page/section titles, admin UI, buttons): a clean,
+     legible face - never the script, which would hurt readability there. */
+  --font-display: "Glacial Indifference", var(--font-heading-fallback), system-ui, sans-serif;
+  --font-body: var(--font-body-fallback), system-ui, sans-serif;
+  /* Tagline/brand-moment script (splash screen, hero accents): the real
+     "Bon Vivant" is a flowing calligraphic script per the client's
+     reference, so it only applies here, not to every heading. */
+  --font-tagline: "Bon Vivant", var(--font-tagline-fallback), cursive;
+}
+
+* {
+  scroll-behavior: smooth;
+}
+
+body {
+  color: var(--enactus-navy);
+  background-color: var(--enactus-white);
+  font-family: var(--font-body);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-display);
+}
+
+::selection {
+  background-color: var(--enactus-yellow);
+  color: var(--enactus-navy);
+}
+
+:focus-visible {
+  outline: 2px solid var(--enactus-yellow);
+  outline-offset: 2px;
+}

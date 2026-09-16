@@ -1,0 +1,29 @@
+spring:
+  datasource:
+    url: jdbc:h2:mem:enactus_test;MODE=PostgreSQL;DB_CLOSE_DELAY=-1
+    username: sa
+    password: sa
+    driver-class-name: org.h2.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    database-platform: org.hibernate.dialect.H2Dialect
+
+  flyway:
+    enabled: false
+
+app:
+  jwt:
+    secret: test-secret-key-for-jwt-signing-must-be-at-least-256-bits-long
+    expiration-ms: 3600000
+  cors:
+    allowed-origins: http://localhost:3000
+  upload:
+    dir: ./uploads-test
+    public-base-url: /uploads
+    max-size-bytes: 5242880
+  seed:
+    enabled: false
+    admin-email: admin@test.local
+    admin-password: TestPassword123

@@ -1,0 +1,5 @@
+<svg width="300" height="160" viewBox="0 0 300 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Partner logo placeholder">
+  <rect width="300" height="160" fill="#FFFFFF" stroke="#B0B3B8" stroke-width="1"/>
+  <rect x="70" y="60" width="160" height="40" rx="8" fill="#EDEEF0"/>
+  <text x="150" y="86" font-family="Poppins, 'Segoe UI', sans-serif" font-size="14" fill="#515456" text-anchor="middle">LOGO</text>
+</svg>
