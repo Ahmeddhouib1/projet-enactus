@@ -1,6 +1,6 @@
 # Hébergement gratuit — Enactus ENSI
 
-Configuration préparée, mais aucun déploiement distant n'a encore été effectué.
+Configuration préparée. Le dépôt GitHub est en place (`origin` configuré, code à jour). Les étapes de connexion aux tableaux de bord Render/Neon/Vercel restent à finaliser manuellement : aucun outil de ce projet ne peut se connecter à ces interfaces à ta place.
 
 ## Services
 
@@ -12,7 +12,7 @@ Les offres gratuites ont des quotas. Choisir explicitement les formules gratuite
 
 ## 1. Dépôt GitHub
 
-Créer un dépôt privé et y envoyer les sources. Ne jamais ajouter `.env`, les fichiers téléversés, `node_modules` ou les dossiers de compilation. Le dépôt local n'a actuellement aucun dépôt distant configuré.
+Créer un dépôt privé et y envoyer les sources. Ne jamais ajouter `.env`, les fichiers téléversés, `node_modules` ou les dossiers de compilation. Fait : `origin` pointe vers https://github.com/Ahmeddhouib1/projet-enactus et le code est à jour.
 
 ## 2. Base Neon
 
@@ -21,7 +21,7 @@ Créer un projet Free en région européenne, puis récupérer l'hôte, le nom d
 Dans Render, renseigner séparément :
 
 ```text
-SPRING_DATASOURCE_URL=jdbc:postgresql://HOTE_NEON/NOM_BASE?sslmode=require
+SPRING_DATASOURCE_URL=jdbc:postgresql://ep-blue-moon-b428jn5b-pooler.c-6.us-east-2.aws.neon.tech/neondb?sslmode=require
 DB_USERNAME=UTILISATEUR_NEON
 DB_PASSWORD=MOT_DE_PASSE_NEON
 ```
@@ -34,7 +34,7 @@ Une nouvelle base reçoit les migrations et données initiales du projet. Les do
 
 Créer un Blueprint à partir du dépôt GitHub et sélectionner `render.yaml`. Vérifier que le service est bien en plan Free.
 
-Renseigner les trois variables Neon, `ADMIN_EMAIL`, un `ADMIN_PASSWORD` fort et `CORS_ALLOWED_ORIGINS` avec l'origine HTTPS exacte du frontend, sans slash final. Si l'adresse frontend n'est pas encore connue, mettre temporairement `http://localhost:3000` puis la remplacer après l'étape 4.
+Renseigner les trois variables Neon, `ADMIN_EMAIL`, un `ADMIN_PASSWORD` fort, `CORS_ALLOWED_ORIGINS` avec l'origine HTTPS exacte du frontend (sans slash final), et les cinq variables R2 de l'étape 5. Si l'adresse frontend n'est pas encore connue, mettre temporairement `http://localhost:3000` puis la remplacer après l'étape 4.
 
 Le secret JWT est généré par Render. Ne pas publier les secrets dans GitHub ou dans une conversation. Les identifiants administrateur ne créent le compte qu'au premier démarrage ; modifier ensuite la variable ne change pas le mot de passe d'un compte existant.
 
@@ -55,11 +55,27 @@ Déployer puis reporter l'origine finale `https://ADRESSE_FRONTEND.vercel.app` d
 
 Vercel Hobby est réservé à un usage personnel non commercial. Vérifier que l'usage de l'association est éligible avant de retenir cette offre ; sinon choisir un hébergeur adapté.
 
-## 5. Fichiers : point à résoudre avant utilisation réelle
+## 5. Fichiers : stockage persistant (Cloudflare R2)
 
-Le projet stocke actuellement images et documents dans le disque local du backend. Sur Render Free, ces fichiers disparaissent au redémarrage, au redéploiement ou à la mise en veille. Les enregistrements PostgreSQL restent, mais leurs liens deviennent inutilisables.
+Le backend stockait initialement images et documents sur le disque local, effacé sur Render Free à chaque redémarrage/redéploiement/veille. C'est désormais résolu : `R2FileStorageService` (bucket Cloudflare R2, compatible S3) remplace `LocalFileStorageService` en production, activé par `STORAGE_PROVIDER=r2`. En local/dev, `STORAGE_PROVIDER` reste absent et le stockage disque continue de fonctionner comme avant (aucun changement de comportement).
 
-Avant de confier des données au CMS, remplacer `LocalFileStorageService` par un stockage externe persistant (par exemple un stockage objet disposant d'une offre gratuite), puis transférer les fichiers locaux nécessaires. Cette intégration n'est pas encore réalisée. Le stockage doit couvrir les images ET les documents et préserver leurs règles d'accès.
+Étapes côté Cloudflare (aucune carte bancaire requise pour le plan gratuit — 10 Go inclus) :
+
+1. Créer un compte Cloudflare, puis un bucket R2 (ex. `enactus-ensi-uploads`).
+2. Dans le bucket, activer un accès public : soit le sous-domaine `r2.dev` fourni automatiquement (rapide, suffisant pour démarrer), soit un domaine personnalisé.
+3. Créer un jeton d'API R2 (« Manage R2 API Tokens ») avec permission lecture/écriture sur ce bucket. Noter l'`Access Key ID`, la `Secret Access Key`, et l'identifiant de compte Cloudflare (`Account ID`, visible dans l'URL du dashboard R2 ou la page « R2 » à droite).
+4. Renseigner dans Render les cinq variables :
+
+```text
+STORAGE_PROVIDER=r2
+R2_ACCOUNT_ID=IDENTIFIANT_COMPTE
+R2_ACCESS_KEY_ID=CLE_ACCES
+R2_SECRET_ACCESS_KEY=CLE_SECRETE
+R2_BUCKET=enactus-ensi-uploads
+R2_PUBLIC_BASE_URL=https://pub-XXXXXXXX.r2.dev
+```
+
+`R2_PUBLIC_BASE_URL` ne doit pas avoir de slash final. Les fichiers locaux déjà présents dans l'installation de développement ne sont pas transférés automatiquement vers R2 ; les re-téléverser depuis l'admin après la bascule si nécessaire.
 
 ## 6. Vérification finale
 
@@ -75,3 +91,4 @@ Avant de confier des données au CMS, remplacer `LocalFileStorageService` par un
 - https://render.com/docs/blueprint-spec
 - https://neon.com/pricing
 - https://vercel.com/docs/limits/fair-use-guidelines
+- https://developers.cloudflare.com/r2/get-started/
