@@ -8,7 +8,7 @@ const backendOrigin = (() => {
 })();
 
 const nextConfig = {
-  output: "standalone",
+  output: process.env.VERCEL ? undefined : "standalone",
   turbopack: {
     root: import.meta.dirname,
   },
