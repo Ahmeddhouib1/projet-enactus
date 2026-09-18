@@ -16,7 +16,7 @@ const SOCIAL_LINKS = [
   { href: "https://linkedin.com", label: "LinkedIn", icon: Linkedin },
 ];
 
-const CONTACT_EMAIL = "contact@enactus-ensi.org";
+const CONTACT_EMAIL = "enactus.ensi@ensi-uma.tn";
 
 export default function Footer() {
   return (
