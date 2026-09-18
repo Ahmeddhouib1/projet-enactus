@@ -49,10 +49,10 @@ export default function Navbar() {
       <div className="mx-auto flex h-20 max-w-content items-center justify-between px-6 lg:px-8">
         <Link href="/" className="flex items-center gap-3 py-2" aria-label="Enactus ENSI home">
           <Image
-            src="/images/logo-enactus-ensi.svg"
+            src="/images/logo-enactus-ensi.png"
             alt="Enactus ENSI"
-            width={150}
-            height={44}
+            width={186}
+            height={100}
             priority
             className="h-10 w-auto"
           />

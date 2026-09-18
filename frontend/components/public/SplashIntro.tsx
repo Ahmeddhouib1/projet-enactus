@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
 import { cn } from "@/lib/utils";
 
 const TAGLINE = "#We_Change_The_Odds";
@@ -12,7 +13,7 @@ const EXIT_DURATION_MS = 500;
 /**
  * Entrance animation shown every time the home page loads (including
  * refreshes): the yellow origami bird from the Enactus ENSI mark (just the
- * bird, not the full wordmark) assembles facet by facet, then the chapter
+ * bird, not the full wordmark) bounces into place, then the chapter
  * tagline types itself out in the charter's heading font, before the whole
  * overlay fades to reveal the page. Skipped entirely for visitors who
  * prefer reduced motion.
@@ -72,28 +73,14 @@ export default function SplashIntro() {
       aria-hidden="true"
     >
       {/* The origami bird from the Enactus ENSI mark - just the bird, not the wordmark. */}
-      <svg viewBox="0 0 200 160" className="h-28 w-36 sm:h-32 sm:w-40" role="presentation">
-        <polygon
-          points="10,75 70,45 50,120"
-          className="origin-center fill-enactus-yellow opacity-0 animate-shape-in"
-          style={{ animationDelay: "0ms" }}
-        />
-        <polygon
-          points="70,45 145,70 90,125"
-          className="origin-center fill-enactus-yellow opacity-0 animate-shape-in"
-          style={{ animationDelay: "120ms" }}
-        />
-        <polygon
-          points="70,45 145,70 95,35"
-          className="origin-center fill-[#E0A800] opacity-0 animate-shape-in"
-          style={{ animationDelay: "240ms" }}
-        />
-        <polygon
-          points="145,70 185,30 165,90"
-          className="origin-center fill-enactus-yellow opacity-0 animate-shape-in"
-          style={{ animationDelay: "360ms" }}
-        />
-      </svg>
+      <Image
+        src="/images/bird.png"
+        alt=""
+        width={1078}
+        height={1083}
+        priority
+        className="h-28 w-28 origin-center object-contain opacity-0 animate-shape-in sm:h-32 sm:w-32"
+      />
       <p className="font-tagline max-w-full whitespace-nowrap px-4 text-center text-[8vw] leading-none text-white sm:text-4xl md:text-5xl">
         {typed}
         <span className="ml-1 inline-block w-[2px] animate-pulse bg-enactus-yellow align-middle" style={{ height: "0.7em" }} />

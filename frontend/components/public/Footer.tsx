@@ -25,10 +25,10 @@ export default function Footer() {
         <div>
           <Link href="/" aria-label="Enactus ENSI home">
             <Image
-              src="/images/logo-enactus-ensi-white.svg"
+              src="/images/logo-enactus-ensi-white.png"
               alt="Enactus ENSI"
-              width={160}
-              height={48}
+              width={186}
+              height={100}
               className="h-11 w-auto"
             />
           </Link>

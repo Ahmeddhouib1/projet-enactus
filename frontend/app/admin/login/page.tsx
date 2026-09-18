@@ -43,7 +43,7 @@ function LoginForm() {
     <div className="flex min-h-screen items-center justify-center bg-enactus-navy px-6">
       <div className="w-full max-w-md rounded-2xl bg-white p-8 shadow-2xl sm:p-10">
         <div className="flex justify-center">
-          <Image src="/images/logo-enactus-ensi.svg" alt="Enactus ENSI" width={160} height={46} />
+          <Image src="/images/logo-enactus-ensi.png" alt="Enactus ENSI" width={186} height={100} className="h-14 w-auto" />
         </div>
         <h1 className="mt-8 text-center text-2xl font-bold text-enactus-navy">Admin Sign In</h1>
         <p className="mt-2 text-center text-sm text-enactus-dark-gray">

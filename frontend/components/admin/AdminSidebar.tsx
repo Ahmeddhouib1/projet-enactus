@@ -44,10 +44,10 @@ export default function AdminSidebar() {
       <div className="flex h-20 items-center border-b border-white/10 px-6">
         <Link href="/admin" className="flex items-center gap-2">
           <Image
-            src="/images/logo-enactus-ensi-white.svg"
+            src="/images/logo-enactus-ensi-white.png"
             alt="Enactus ENSI"
-            width={140}
-            height={40}
+            width={186}
+            height={100}
             className="h-9 w-auto"
           />
         </Link>

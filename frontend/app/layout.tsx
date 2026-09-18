@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     siteName: "Enactus ENSI",
     title: "Enactus ENSI",
     description: SITE_DESCRIPTION,
-    images: [{ url: "/images/logo-enactus-ensi.svg", width: 200, height: 56, alt: "Enactus ENSI" }],
+    images: [{ url: "/images/logo-enactus-ensi.png", width: 582, height: 313, alt: "Enactus ENSI" }],
   },
   twitter: {
     card: "summary",

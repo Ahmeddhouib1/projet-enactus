@@ -31,17 +31,9 @@ services:
         sync: false
       - key: CORS_ALLOWED_ORIGINS
         sync: false
-      - key: STORAGE_PROVIDER
-        value: r2
-      - key: R2_ACCOUNT_ID
-        sync: false
-      - key: R2_ACCESS_KEY_ID
-        sync: false
-      - key: R2_SECRET_ACCESS_KEY
-        sync: false
-      - key: R2_BUCKET
-        sync: false
-      - key: R2_PUBLIC_BASE_URL
-        sync: false
+      - key: UPLOAD_DIR
+        value: /app/uploads
+      - key: UPLOAD_PUBLIC_BASE_URL
+        value: /uploads
       - key: SEED_ENABLED
         value: "true"
