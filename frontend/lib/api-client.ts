@@ -1,7 +1,8 @@
 import axios from "axios";
 import { getAuthToken } from "@/lib/auth";
 
-export const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8080";
+export const API_BASE_URL =
+  process.env.NEXT_PUBLIC_API_URL?.trim() || "http://localhost:8080";
 
 /**
  * Server-side rendering runs inside the frontend's own container/process,
